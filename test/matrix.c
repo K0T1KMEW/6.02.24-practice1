@@ -4,11 +4,16 @@
 
 Matrix* create_matrix(int rows, int cols) {
     Matrix* matrix = malloc(sizeof(Matrix));
-    if (matrix != NULL) {
-        matrix->data = malloc(rows * cols * sizeof(int));
-        matrix->rows = rows;
-        matrix->cols = cols;
+    if (matrix == NULL) {
+        return NULL;
     }
+    matrix->data = malloc(rows * cols * sizeof(int));
+    if (matrix->data == NULL) {
+        free(matrix);
+        return NULL;
+    }
+    matrix->rows = rows;
+    matrix->cols = cols;
     return matrix;
 }
 
